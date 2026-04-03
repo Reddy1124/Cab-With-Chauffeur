@@ -1,0 +1,243 @@
+/* ── Variables ── */
+:root {
+  --black:   #0f0f0f;
+  --white:   #ffffff;
+  --accent:  #f5a623;
+  --bg:      #f4f4f0;
+  --card:    #ffffff;
+  --muted:   #666666;
+  --border:  #e0e0e0;
+  --radius:  10px;
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Georgia', serif;
+  background: var(--bg);
+  color: var(--black);
+  line-height: 1.6;
+}
+
+/* ── Header ── */
+header {
+  background: var(--black);
+  color: var(--white);
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+header h1 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.875rem;
+}
+
+nav a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+nav a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ── HERO SECTION ── */
+#home {
+  background: var(--black);
+  color: var(--white);
+  padding: 5rem 2rem 4rem;
+  text-align: center;
+}
+
+#home h2 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  margin-bottom: 1rem;
+}
+
+#home p {
+  color: rgba(255,255,255,0.65);
+  max-width: 50ch;
+  margin: 0 auto;
+  font-size: 1.05rem;
+}
+
+/* Hero Button */
+.hero-btn {
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.8rem;
+  background: var(--accent);
+  color: var(--black);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.25s;
+}
+
+.hero-btn:hover {
+  background: #e09510;
+}
+
+/* ── GENERAL SECTIONS ── */
+section {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+/* ── SERVICES ── */
+#services h2 {
+  margin-bottom: 1.5rem;
+}
+
+.services {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  width: 180px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+/* ── BOOKING SECTION ── */
+#booking {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#booking h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+/* ── FORM CARD ── */
+form {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+form:hover {
+  box-shadow: 0 10px 40px rgba(0,0,0,0.13);
+  transform: translateY(-4px);
+}
+
+form p {
+  margin-bottom: 1.25rem;
+}
+
+label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fafafa;
+  transition: 0.25s;
+}
+
+input:hover,
+select:hover {
+  border-color: #bbb;
+  background: #fff;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(245,166,35,0.18);
+}
+
+/* ── BUTTON ── */
+button[type="submit"] {
+  width: 100%;
+  padding: 0.85rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background: var(--accent);
+  color: var(--black);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+button[type="submit"]:hover {
+  background: #e09510;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(245,166,35,0.35);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black);
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  padding: 1.25rem;
+  font-size: 0.8rem;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 600px) {
+  header {
+    padding: 1rem 1.25rem;
+  }
+
+  nav {
+    gap: 1rem;
+  }
+
+  #home {
+    padding: 3.5rem 1.25rem 3rem;
+  }
+
+  form {
+    padding: 1.5rem;
+  }
+}

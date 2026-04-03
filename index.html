@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cab with Chauffeur</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>🚘 Cab with Chauffeur</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#booking">Book Now</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home">
+    <h2>Your Ride, Your Way — Arrive in Comfort</h2>
+    <p>
+      Experience premium cab service with professional chauffeurs at your doorstep.
+      Whether it's a business trip, airport transfer, or a night out — we've got you covered.
+    </p>
+
+    <button class="hero-btn"
+      onclick="document.getElementById('bookingForm').scrollIntoView({behavior:'smooth'})">
+      Book a Ride
+    </button>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <h2>Our Services</h2>
+
+    <div class="services">
+      <div class="card">Local Rides</div>
+      <div class="card">Airport Pickup</div>
+      <div class="card">Outstation Trips</div>
+    </div>
+  </section>
+
+  <!-- Booking Section -->
+  <section id="booking">
+    <h2>Book a Ride</h2>
+
+    <form id="bookingForm">
+
+      <p>
+        <label for="pickup">Pickup Location:</label>
+        <input
+          type="text"
+          id="pickup"
+          name="pickup"
+          placeholder="Enter pickup address"
+          required
+        />
+      </p>
+
+      <p>
+        <label for="drop">Drop Location:</label>
+        <input
+          type="text"
+          id="drop"
+          name="drop"
+          placeholder="Enter destination address"
+          required
+        />
+      </p>
+
+      <p>
+        <label for="cab-type">Cab Type:</label>
+        <select id="cab-type" name="cab-type" required>
+          <option value="">-- Select a cab type --</option>
+          <option value="mini">Mini</option>
+          <option value="sedan">Sedan</option>
+          <option value="suv">SUV</option>
+        </select>
+      </p>
+
+      <p>
+        <button type="submit">Book Now</button>
+      </p>
+
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Cab with Chauffeur. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
