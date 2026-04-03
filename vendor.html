@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vendor Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f0;
+      margin: 0;
+    }
+
+    header {
+      background: #0f0f0f;
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 10px;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .status {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .pending { color: orange; }
+    .accepted { color: green; }
+    .rejected { color: red; }
+
+    button {
+      margin-top: 10px;
+      margin-right: 10px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .accept {
+      background: green;
+      color: white;
+    }
+
+    .reject {
+      background: red;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>📋 Vendor Dashboard</h1>
+</header>
+
+<div class="container">
+  <div id="bookings">Loading bookings...</div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    getDocs,
+    updateDoc,
+    doc
+  } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCA6j1gwK_z74b9fBsDCkEabMIMA5kelgI",
+    authDomain: "cab-booking-app-f7f62.firebaseapp.com",
+    projectId: "cab-booking-app-f7f62",
+    storageBucket: "cab-booking-app-f7f62.firebasestorage.app",
+    messagingSenderId: "765698499462",
+    appId: "1:765698499462:web:c41bd77d3718e3a144c207"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const bookingsDiv = document.getElementById("bookings");
+
+  async function loadBookings() {
+    bookingsDiv.innerHTML = "Loading...";
+
+    const snapshot = await getDocs(collection(db, "bookings"));
+
+    bookingsDiv.innerHTML = "";
+
+    snapshot.forEach((docSnap) => {
+      const data = docSnap.data();
+
+      const card = document.createElement("div");
+      card.className = "card";
+
+      card.innerHTML = `
+        <p><b>📍 Pickup:</b> ${data.pickup}</p>
+        <p><b>🏁 Drop:</b> ${data.drop}</p>
+        <p><b>🚗 Cab:</b> ${data.cabType}</p>
+        <p><b>💰 Price:</b> ₹${data.price}</p>
+        <p class="status ${data.status}">Status: ${data.status}</p>
+
+        <button class="accept" onclick="updateStatus('${docSnap.id}', 'accepted')">Accept</button>
+        <button class="reject" onclick="updateStatus('${docSnap.id}', 'rejected')">Reject</button>
+      `;
+
+      bookingsDiv.appendChild(card);
+    });
+  }
+
+  window.updateStatus = async function (id, status) {
+    await updateDoc(doc(db, "bookings", id), { status });
+    alert("Updated to " + status);
+    loadBookings();
+  };
+
+  loadBookings();
+</script>
+
+</body>
+</html>
